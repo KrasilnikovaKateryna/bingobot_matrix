@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('https://www.sony.eu/alphauniverse/assets/2024/09/red-mountain-at-dawn.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    /* Затемнение фона */
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Затемнение */
+    z-index: -1; /* Располагаем затемнение за контентом */
+}
+
+.container {
+    width: 95%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.7); /* Более темный прозрачный фон формы */
+    padding: 20px;
+    border-radius: 12px; /* Скругленные края для формы */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffe6f2;
+}
+
+.add-room, .room-list {
+    margin-bottom: 20px;
+}
+
+.add-room h2, .room-list h2 {
+    margin-bottom: 10px;
+    color: #ffe6f2;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid transparent;
+    border-radius: 8px; /* Скругленные края для полей */
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    outline: none;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+input[type="text"]:hover,
+input[type="number"]:hover {
+    border: 2px solid #865D47; /* Обводка при наведении */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border: 2px solid #865D47; /* Обводка при фокусе */
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    color: #ffe6f2;
+}
+
+.admin-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.admin-wrapper input {
+    flex: 1;
+    margin-right: 5px;
+}
+
+button[type="button"]#addAdmin {
+    padding: 10px;
+    background-color: #865D47; /* Новый цвет фона кнопки */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Скругленные края для кнопки */
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    width: 40px;
+}
+
+button[type="button"]#addAdmin:hover {
+    background-color: #A67A5A; /* Светлее при наведении */
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #865D47; /* Новый цвет фона кнопки */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Скругленные края для кнопки */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #A67A5A; /* Светлее при наведении */
+}
+
+.room-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.room-list li {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #865D47; /* Новый цвет обводки */
+    border-radius: 8px; /* Скругленные края для элемента списка */
+    display: flex;
+    flex-direction: column;
+    color: #ffe6f2;
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+.room-list li:hover {
+    border: 2px solid #A67A5A; /* Светлее при наведении */
+}
+
+.room-list .room-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.room-list .room-actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px; /* Скругленные края для кнопок */
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #865D47; /* Новый цвет фона кнопки */
+    color: white;
+    transition: background 0.3s ease;
+}
+
+.room-list .room-actions .pause,
+.room-list .room-actions .start,
+.room-list .room-actions .edit,
+.room-list .room-actions .delete {
+    border-radius: 8px; /* Скругленные края для всех кнопок */
+}
+
+.timer {
+    padding: 8px;
+    border: 2px solid #865D47; /* Новый цвет обводки таймера */
+    border-radius: 8px; /* Скругленные края для таймера */
+    display: inline-block;
+    color: #ffe6f2;
+    margin-top: 8px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.room-list .room-actions .pause {
+    background-color: orange !important;
+}
+
+.room-list .room-actions .edit {
+    background-color: #8A616A !important;
+}
+
+.room-list .room-actions .delete {
+    background-color: red !important;
+}
+
+.room-list .room-actions .start {
+    background-color: green !important;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление Ботом</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <header>
+            <h1>Управление Ботом</h1>
+        </header>
+
+        <div class="add-room">
+            <h2>Добавить комнату</h2>
+            <form id="addRoomForm">
+                <input type="text" id="roomTitle" placeholder="Название комнаты" required>
+                <input type="text" id="payerNickname" placeholder="Никнейм плательщика" required>
+                <input type="text" id="roomID" placeholder="ID комнаты (комната:matrix.org)" required>
+
+                <div id="adminList">
+                    <div class="admin-wrapper">
+                        <input type="text" class="adminAccount" placeholder="Администратор (@user:matrix.org)" required>
+                        <button type="button" id="addAdmin">+</button>
+                    </div>
+                </div>
+
+                <button type="submit">Добавить комнату</button>
+            </form>
+        </div>
+
+        <div class="room-list">
+            <h2>Список комнат</h2>
+            <ul id="roomList">
+                {% for room in rooms %}
+                    <li>
+                        <div><strong>Название:</strong> <span class="roomTitle">{{ room.title }}</span></div>
+                        <div><strong>ID комнаты:</strong> <span class="roomID">{{ room.room_id }}</span></div>
+                        <div><strong>Администраторы:</strong> 
+                            <span class="adminAccounts">
+                                {% for admin in room.admins %}
+                                    {{ admin.admin_account }}{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            </span>
+                        </div>
+                        <div><strong>Плательщик:</strong> <span class="payerNickname">{{ room.payer_nickname }}</span></div>
+
+                        <div class="room-actions">
+                            <button class="start" style="background-color: green;">Старт</button>
+                            <button class="edit" style="background-color: #8A616A;">Изменить</button>
+                            <button class="delete" style="background-color: red;">Удалить</button>
+                            <button class="update-time" style="background-color: #8A616A;">Продлить подписку</button>
+                            <div class="timer" data-remaining-time="0">Таймер не запущен</div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
