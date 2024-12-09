@@ -9,12 +9,11 @@ from app import app
 
 # Настройки
 homeserver = "https://matrix-client.matrix.org"
-user_id = "@username:matrix.org"
-password = "password"
+user_id = "@katia_horn:matrix.org"
+password = "Game45666Game"
 
 # Время ожидания для обновления данных о ново добавленных комнатах и продленных подписках в секундах
 UPDATE_DATABASE_TIMEOUT = 432000 # 2 часа
-SEND_CARRYING_MESSAGE_TIMEOUT = 1080000 # 5 часов
 
 creds = botlib.Creds(
     homeserver=homeserver,
@@ -105,25 +104,11 @@ async def monitor_new_rooms():
         await asyncio.sleep(UPDATE_DATABASE_TIMEOUT)
 
 
-async def send_message_to_all_rooms(message):
-    global current_rooms
-
-    while True:
-        for room_id, room_alias in current_rooms.items():
-            try:
-                await bot.api.send_text_message(room_id, message)
-            except:
-                logging.error(traceback.format_exc())
-
-        await asyncio.sleep(SEND_CARRYING_MESSAGE_TIMEOUT)
-
-
 @bot.listener.on_startup
 async def startup(room_alias):
     try:
         await get_rooms_and_subscription()
         asyncio.create_task(monitor_new_rooms())
-        asyncio.create_task(send_message_to_all_rooms("Готовы играть?"))
         logging.info("Бот успешно запущен и готов к работе!")
     except Exception:
         logging.error(f"Ошибка при старте:\n{traceback.format_exc()}")
