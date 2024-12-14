@@ -9,8 +9,8 @@ from app import app
 
 # Настройки
 homeserver = "https://matrix-client.matrix.org"
-user_id = "@katia_horn:matrix.org"
-password = "Game45666Game"
+user_id = "@username:matrix.org"
+password = "password"
 
 # Время ожидания для обновления данных о ново добавленных комнатах и продленных подписках в секундах
 UPDATE_DATABASE_TIMEOUT = 432000 # 2 часа
